@@ -29,6 +29,18 @@ public class Post {
         super();
     }
 
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Author author;
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
     public Post(String title, String body){//, Author author) {
         this();
         this.title = title;
@@ -74,8 +86,9 @@ public class Post {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Post))
+        if (!(obj instanceof Post)) {
             return false;
+        }
         Post otherPost = (Post)obj;
         return this.title.equals(otherPost.getTitle()) &&
                this.body.equals(otherPost.getBody());
